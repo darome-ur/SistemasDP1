@@ -10,14 +10,14 @@ public class E2 {
 		//Por bloques
 		
 		InputStream i = null;
-		Writer o = null;
+		OutputStream o = null;
 		
 		try
 		{
 			
 			i = new FileInputStream(args[0]);
-			//o = new FileOutputStream(args[1]);
-			o = new OutputStreamWriter(args[1],"UTF-8");
+			o = new FileOutputStream(args[1]);
+			
 		
 	
 				byte[] b = new byte[1024];
@@ -26,7 +26,6 @@ public class E2 {
 				{
 					o.write(b, 0, leidos);
 					leidos = i.read(b);
-					//Usar un writer para la codificacion en args[1]
 				}
 		}
 		catch(IOException e)
