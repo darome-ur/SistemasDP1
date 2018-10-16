@@ -4,25 +4,31 @@ import java.io.*;
 
 
 public class E4W1252 {
-	public void main(String[] args) {
+public static void main(String[] args) {
 		
 		File fo = new File("Ew1252.txt");
-		File f1 = new File("fichero.txt");
-	
+		FileOutputStream os =null;
+	Writer r =null;
 		try {
-				FileOutputStream os = new FileOutputStream(fo);
-				FileInputStream fis = new FileInputStream(f1);
-				BufferedReader r = new BufferedReader(new InputStreamReader(fis,"windows-1252"));
-				String linea;
-				while((linea = r.readLine()) != null)
-				{
-					System.out.println(linea);
-					linea = r.readLine();
-				}
+				os = new FileOutputStream(fo);
+				r= new OutputStreamWriter(os,"windows-1252");
+				r.write("Lápiz a 1€");
+				r.close();
 			}
 		catch(IOException e) 
 		{
 			e.printStackTrace();
+		}
+		finally {
+			if (r!= null)
+			{
+				try {
+					r.close(); //se cierra tambien os 
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
